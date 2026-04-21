@@ -12,9 +12,22 @@ public class SalaryHistoryResponseDTO {
     private SalaryStatus status;
     private LocalDate date;
 
+    /**
+     * Default constructor for SalaryHistoryResponseDTO.
+     */
     public SalaryHistoryResponseDTO() {
     }
 
+    /**
+     * Parameterized constructor for SalaryHistoryResponseDTO.
+     * 
+     * @param id Worker ID.
+     * @param name Worker name.
+     * @param age Worker age.
+     * @param salary Current salary.
+     * @param status UP or DOWN.
+     * @param date Date of change.
+     */
     public SalaryHistoryResponseDTO(String id, String name, int age, double salary, SalaryStatus status, LocalDate date) {
         this.id = id;
         this.name = name;
@@ -37,6 +50,11 @@ public class SalaryHistoryResponseDTO {
     public LocalDate getDate() { return date; }
     public void setDate(LocalDate date) { this.date = date; }
 
+    /**
+     * Returns a formatted string representation of the history DTO.
+     * 
+     * @return Formatted string.
+     */
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");

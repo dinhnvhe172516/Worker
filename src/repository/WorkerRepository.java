@@ -1,6 +1,5 @@
 package repository;
 
-import dto.SalaryHistoryResponseDTO;
 import dto.WorkerRequestDTO;
 import model.SalaryHistory;
 import model.SalaryStatus;
@@ -15,6 +14,11 @@ public class WorkerRepository {
     private final List<Worker> list = new ArrayList<>();
     private final List<SalaryHistory> salaryHistories = new ArrayList<>();
 
+    /**
+     * Adds a new worker to the list.
+     * 
+     * @param request The worker request DTO containing worker details.
+     */
     public void addWorker(WorkerRequestDTO request) {
         Worker worker = new Worker(
                 request.getId(),
@@ -26,6 +30,12 @@ public class WorkerRepository {
         list.add(worker);
     }
 
+    /**
+     * Finds a worker by their unique ID.
+     * 
+     * @param id The ID of the worker to find.
+     * @return The Worker object if found, null otherwise.
+     */
     public Worker findWorkerById(String id) {
         for (Worker worker : list) {
             if (worker.getId().equalsIgnoreCase(id)) {
@@ -35,6 +45,13 @@ public class WorkerRepository {
         return null;
     }
 
+    /**
+     * Changes the salary of a worker and records the history.
+     * 
+     * @param status The salary status (UP or DOWN).
+     * @param code The worker's ID.
+     * @param amount The amount to change.
+     */
     public void changeSalary(SalaryStatus status, String code, double amount) {
         Worker worker = findWorkerById(code);
         if (worker == null) return;
@@ -60,26 +77,32 @@ public class WorkerRepository {
         salaryHistories.add(history);
     }
 
-    public List<SalaryHistoryResponseDTO> getInformationSalary() {
-        List<SalaryHistoryResponseDTO> result = new ArrayList<>();
-        for (SalaryHistory sh : salaryHistories) {
-            result.add(new SalaryHistoryResponseDTO(
-                    sh.getId(),
-                    sh.getName(),
-                    sh.getAge(),
-                    sh.getSalary(),
-                    sh.getStatus(),
-                    sh.getDate()
-            ));
-        }
-        Collections.sort(result, Comparator.comparing(SalaryHistoryResponseDTO::getId));
+    /**
+     * Retrieves all salary change history, sorted by worker ID.
+     * 
+     * @return A list of SalaryHistory objects.
+     */
+    public List<SalaryHistory> getInformationSalary() {
+        List<SalaryHistory> result = new ArrayList<>(salaryHistories);
+        Collections.sort(result, Comparator.comparing(SalaryHistory::getId));
         return result;
     }
 
+    /**
+     * Checks if a worker with the given ID already exists.
+     * 
+     * @param id The ID to check.
+     * @return true if the worker exists, false otherwise.
+     */
     public boolean isExistedWorker(String id) {
         return findWorkerById(id) != null;
     }
 
+    /**
+     * Checks if the salary history is empty.
+     * 
+     * @return true if no history exists, false otherwise.
+     */
     public boolean isHistoryEmpty() {
         return salaryHistories.isEmpty();
     }

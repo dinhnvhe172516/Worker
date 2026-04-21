@@ -7,9 +7,21 @@ public class WorkerResponseDTO {
     private double salary;
     private String workLocation;
 
+    /**
+     * Default constructor for WorkerResponseDTO.
+     */
     public WorkerResponseDTO() {
     }
 
+    /**
+     * Parameterized constructor for WorkerResponseDTO.
+     * 
+     * @param id Worker ID.
+     * @param name Worker name.
+     * @param age Worker age.
+     * @param salary Worker salary.
+     * @param workLocation Worker location.
+     */
     public WorkerResponseDTO(String id, String name, int age, double salary, String workLocation) {
         this.id = id;
         this.name = name;

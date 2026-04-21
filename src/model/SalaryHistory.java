@@ -12,9 +12,23 @@ public class SalaryHistory {
     private LocalDate date;
     private String workLocation;
 
+    /**
+     * Default constructor for SalaryHistory.
+     */
     public SalaryHistory() {
     }
 
+    /**
+     * Parameterized constructor for SalaryHistory.
+     * 
+     * @param id Worker ID.
+     * @param name Worker name.
+     * @param age Worker age.
+     * @param salary New salary.
+     * @param status UP or DOWN.
+     * @param date Date of change.
+     * @param workLocation Worker location.
+     */
     public SalaryHistory(String id, String name, int age, double salary, SalaryStatus status, LocalDate date, String workLocation) {
         this.id = id;
         this.name = name;
@@ -81,6 +95,11 @@ public class SalaryHistory {
         this.workLocation = workLocation;
     }
 
+    /**
+     * Returns a formatted string representation of the salary history record.
+     * 
+     * @return Formatted history info.
+     */
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");

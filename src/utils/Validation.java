@@ -7,6 +7,13 @@ public class Validation {
     private Validation() {
     }
 
+    /**
+     * Validates and trims a string input.
+     * 
+     * @param input The raw input string.
+     * @return The trimmed string.
+     * @throws Exception if input is null or empty.
+     */
     public static String getString(String input) throws Exception {
         if (input == null || input.trim().isEmpty()) {
             throw new Exception(Message.EMPTY_INPUT);
@@ -14,6 +21,15 @@ public class Validation {
         return input.trim();
     }
 
+    /**
+     * Parses and validates a menu choice within a range.
+     * 
+     * @param input The raw input string.
+     * @param min The minimum allowed value.
+     * @param max The maximum allowed value.
+     * @return The parsed integer choice.
+     * @throws Exception if input is not a number or out of range.
+     */
     public static int getChoices(String input, int min, int max) throws Exception {
         try {
             int choice = Integer.parseInt(input);
@@ -26,6 +42,13 @@ public class Validation {
         }
     }
 
+    /**
+     * Parses and validates worker age (18-50).
+     * 
+     * @param input The raw input string.
+     * @return The parsed age.
+     * @throws Exception if input is not a number or out of range.
+     */
     public static int getAge(String input) throws Exception {
         try {
             int age = Integer.parseInt(input);
@@ -38,6 +61,13 @@ public class Validation {
         }
     }
 
+    /**
+     * Parses and validates worker salary (must be > 0).
+     * 
+     * @param input The raw input string.
+     * @return The parsed salary.
+     * @throws Exception if input is not a number or <= 0.
+     */
     public static double getSalary(String input) throws Exception {
         try {
             double salary = Double.parseDouble(input);
@@ -50,6 +80,13 @@ public class Validation {
         }
     }
 
+    /**
+     * Validates if input is 'Y' or 'N'.
+     * 
+     * @param input The raw input string.
+     * @return The uppercase string "Y" or "N".
+     * @throws Exception if input is not Y or N.
+     */
     public static String checkYesOrNo(String input) throws Exception {
         String string = getString(input);
         if (string.equalsIgnoreCase("Y") || string.equalsIgnoreCase("N")) {
