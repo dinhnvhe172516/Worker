@@ -1,4 +1,6 @@
 package model;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Worker {
     private String id;
@@ -6,6 +8,7 @@ public class Worker {
     private int age;
     private double salary;
     private String workLocation;
+    private List<SalaryHistory> salaryHistories = new ArrayList<>();
 
     /**
      * Default constructor for Worker.
@@ -68,6 +71,18 @@ public class Worker {
 
     public void setWorkLocation(String workLocation) {
         this.workLocation = workLocation;
+    }
+
+    public List<SalaryHistory> getSalaryHistories() {
+        return salaryHistories;
+    }
+
+    public void setSalaryHistories(List<SalaryHistory> salaryHistories) {
+        this.salaryHistories = salaryHistories;
+    }
+
+    public void addSalaryHistory(SalaryHistory history) {
+        this.salaryHistories.add(history);
     }
 
     /**

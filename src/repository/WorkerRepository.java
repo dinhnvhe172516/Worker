@@ -12,7 +12,6 @@ import java.util.List;
 
 public class WorkerRepository {
     private final List<Worker> list = new ArrayList<>();
-    private final List<SalaryHistory> salaryHistories = new ArrayList<>();
 
     /**
      * Adds a new worker to the list.
@@ -74,7 +73,7 @@ public class WorkerRepository {
                 LocalDate.now(),
                 worker.getWorkLocation()
         );
-        salaryHistories.add(history);
+        worker.addSalaryHistory(history);
     }
 
     /**
@@ -83,7 +82,10 @@ public class WorkerRepository {
      * @return A list of SalaryHistory objects.
      */
     public List<SalaryHistory> getInformationSalary() {
-        List<SalaryHistory> result = new ArrayList<>(salaryHistories);
+        List<SalaryHistory> result = new ArrayList<>();
+        for (Worker worker : list) {
+            result.addAll(worker.getSalaryHistories());
+        }
         Collections.sort(result, Comparator.comparing(SalaryHistory::getId));
         return result;
     }
@@ -104,6 +106,11 @@ public class WorkerRepository {
      * @return true if no history exists, false otherwise.
      */
     public boolean isHistoryEmpty() {
-        return salaryHistories.isEmpty();
+        for (Worker worker : list) {
+            if (!worker.getSalaryHistories().isEmpty()) {
+                return false;
+            }
+        }
+        return true;
     }
 }
